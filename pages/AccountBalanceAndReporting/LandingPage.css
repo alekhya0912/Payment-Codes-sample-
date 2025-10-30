@@ -1,0 +1,52 @@
+.landing-root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+  .landing-root h3 {
+    font-size: 3rem;
+    color: #2363a0;
+    margin-bottom: 1.8rem;
+  }
+  .profile-row {
+    display: flex;
+    flex-direction: column;
+    gap: 34px;
+    justify-content: center;
+  }
+  .profile-card {
+    background: #f6fbff;
+    border: 2px solid #1563eb26;
+    border-radius: 14px;
+    padding: 2rem 2.2rem 1.3rem 2.2rem;
+    min-width: 440px;
+    box-shadow: 0 8px 28px #2563eb18;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: box-shadow 0.12s, border-color 0.1s, transform 0.11s;
+  }
+  .profile-card:hover, .profile-card:focus {
+    border-color: #2563eb;
+    box-shadow: 0 15px 34px #2563eb44;
+    transform: scale(1.04) translateY(-7px);
+  }
+  .profile-name {
+    font-weight: 700;
+    color: #22c55e;
+    font-size: 1.14rem;
+    margin-bottom: 0.28rem;
+  }
+  .profile-accnum {
+    font-family: 'Consolas', monospace;
+    color: #536181;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+  }
+  .profile-bank {
+    color: #3183C8;
+    font-size: 0.98rem;
+  }

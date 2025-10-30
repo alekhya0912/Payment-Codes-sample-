@@ -1,0 +1,114 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-sans);
+    background-color: var(--color-bg-page);
+    color: var(--color-text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  input[type="text"],
+  input[type="number"],
+  input[type="email"],
+  input[type="password"],
+  textarea,
+  select {
+    padding: 0.65rem 0.75rem;
+    font-size: 0.9rem;
+    border: 1px solid var(--color-border-input);
+    background-color: var(--color-bg-card);
+    border-radius: var(--radius);
+    transition: var(--transition);
+    color: var(--color-text-primary);
+  }
+  
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--color-text-light);
+  }
+  
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: none;
+    border-color: var(--color-border-input-focus);
+    box-shadow: 0 0 0 2px var(--color-primary-light);
+  }
+  
+  input:disabled,
+  textarea:disabled,
+  select:disabled {
+    background-color: var(--color-bg-muted);
+    cursor: not-allowed;
+    color: var(--color-text-secondary);
+  }
+  
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.65rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  
+  .button-primary {
+    background-color: var(--color-primary);
+    color: var(--color-text-inverted);
+    box-shadow: var(--shadow);
+  }
+  .button-primary:hover {
+    background-color: var(--color-primary-hover);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .button-success {
+    background-color: var(--color-success);
+    color: var(--color-text-inverted);
+    box-shadow: var(--shadow);
+  }
+  .button-success:hover {
+    background-color: var(--color-success-hover);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .button-danger {
+    background-color: var(--color-danger);
+    color: var(--color-text-inverted);
+    box-shadow: var(--shadow);
+  }
+  .button-danger:hover {
+    background-color: var(--color-danger-hover);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .button-secondary {
+    background-color: var(--color-bg-muted);
+    color: var(--color-text-secondary);
+  }
+  .button-secondary:hover {
+    background-color: var(--color-bg-muted-hover);
+  }
+  
+  .button:disabled {
+    background-color: #9ca3af;
+    color: var(--color-bg-muted);
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+  
+  .button svg {
+    width: 1.1rem;
+    height: 1.1rem;
+    margin-right: 0.4rem;
+  }

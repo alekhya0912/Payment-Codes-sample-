@@ -1,0 +1,138 @@
+.login-container {
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    font-family: "Open Sans", "Helvetical Neue", Arial, sans-serif;
+    color: fff;
+}
+
+
+.login-content {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-grow: 1;
+    padding-right: 120px;
+}
+
+.login-card {
+    margin-top: 40px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    color: #333;
+    width: 440px;
+    max-width: 95%;
+    height: 75vh;
+    padding: 20px 5px 20px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    opacity: 0.95;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.login-card h1 {
+    color: #005eb8;
+    text-align: center;
+    margin-bottom: 5px;
+    font-size: 1.3rem;
+}
+
+.subtitle {
+    text-align: center;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.login-label {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.login-input {
+    width: 90%;
+    padding: 8px;
+    font-size: 0.9rem;
+    margin: 8px 0 16px;
+    border-radius: 1px solid #ccc;
+}
+
+.login-input:focus {
+    border-color: #00b3b3;
+    box-shadow: 0 0 3px #00b3b3;
+    outline: none;
+}
+
+.remember-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 5ox;
+    margin-bottom: 16px;
+    font-size: 0.8rem;
+    width: 100%;
+}
+
+.remember-left {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.remember-left input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    padding: 0;
+    accent-color: #005eb8;
+    cursor: pointer;
+}
+
+.remember-left label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    white-space: nowrap;
+}
+
+.Need-help {
+    color: #007bff;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    font-size: 14px;
+    white-space: nowrap;
+    margin-left: 50%;
+}
+
+.Need-help:hover {
+    color: #00b3b3;
+    text-decoration: underline;
+}
+
+.Login-btn {
+    width: 50%;
+    margin-left: 25%;
+    padding: 12px;
+    background-color: #005eb8;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.Login-btn:hover {
+    background-color: #009999;
+}
+
+.bottom-text {
+    text-align: center;
+    font-size: 14px;
+}
+
+.bottom-text span {
+    color: #007bff;
+    cursor: pointer;
+}

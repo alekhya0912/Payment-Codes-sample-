@@ -1,0 +1,102 @@
+.signup-page {
+    background: no-repeat center center/cover;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.signup-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    overflow: hidden;
+}
+
+.signup-card {
+    background-color: rgba(255, 255, 255, 0.9);
+    width: 70%;
+    padding: 10px 50px 30px 50px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    opacity: 0.95;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    max-height: 78vh;
+    margin-top: 60px;
+
+}
+
+.signup-card::-webkit-scrollbar {
+    width: 6px;
+}
+
+.signup-card::-webkit-scrollbar-thumb {
+    background-color: #004c97;
+    border-radius: 10px;
+}
+
+.signup-card h2 {
+    text-align: center;
+    color: #004c97;
+    margin-bottom: 20px;
+    font-size: 26px;
+}
+
+.signup-form-section {
+    margin-bottom: 20px;
+}
+
+.signup-form-section h3 {
+    color: #007054;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.signup-form-section input, .signup-form-section select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.signup-form-section input:focus, .signup-form-section select:focus {
+    outline: none;
+    border-color: #004c97;
+}
+
+.signup-button {
+    background-color: #004c97;
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-left: 290px;
+    width: 35%;
+}
+
+.signup-button:hover {
+    background-color: #007054;
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.login-link a {
+    color: #004c97;
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}

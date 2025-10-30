@@ -1,0 +1,65 @@
+/* AccountHeader.css */
+.account-header-root {
+    background: linear-gradient(90deg, #293d5a 0%, #466c98 120%);
+    color: #fff;
+    border-radius:25px;
+    margin: 36px auto 26px auto;
+    min-height: 97px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    box-shadow: 0 7px 28px rgba(31,93,160,0.13);
+    padding: 33px 34px 22px 38px;
+    max-width: 1050px;
+    width: 92vw;
+    position: relative;
+  }
+  .account-header-root h2 {
+    font-size: 3.5rem;
+    font-weight: 650;
+    margin: 0 0 6px 20px;
+    letter-spacing: 1px;
+  }
+  .account-header-accnum {
+    font-size: 1.3rem;
+    font-family: 'Consolas', monospace;
+    color: #a9bed7;
+    margin: 6px 0 20px 40px;
+    opacity: 0.8;
+    letter-spacing: 2px;
+  }
+  .account-header-balance-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.14);
+    box-shadow: 0 1px 8px rgba(49,93,168,.15);
+    border-radius: 14px;
+    padding: 25px 20px 25px 22px;
+    position: absolute;
+    right: 36px;
+    top: 46px;
+    min-width: 195px;
+  }
+  .account-header-balance-amount {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: .012em;
+    color: #fff;
+    margin-right: 13px;
+  }
+  .account-header-select {
+    border: none;
+    padding: 8px 12px;
+    border-radius: 9px;
+    background: rgba(255, 255, 255, 0.628);
+    color: #1857ad;
+    font-size: 1.09rem;
+    font-weight: 600;
+    outline: none;
+    transition: background .11s;
+    box-shadow: 0 2px 5px rgba(59,96,186,0.07);
+  }
+  .account-header-select:focus {
+    background: #dde6fa;
+  }

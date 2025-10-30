@@ -1,0 +1,21 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.common-header {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px 0 15px 50px;
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.bank-logo {
+    width: 120px;
+    cursor: pointer;
+}

@@ -2,10 +2,10 @@
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --font-mono: 'Fira Code', 'Courier New', monospace;
 
-  --color-primary: #4f46e5;
-  --color-primary-hover: #4338ca;
+  --color-primary: #024fa2;
+  --color-primary-hover: #024fa2;
   --color-primary-light: #eef2ff;
-  --color-primary-text: #3730a3;
+  --color-primary-text: #024fa2;
   
   --color-secondary: #0ea5e9;
   
@@ -48,3 +48,4 @@
   
   --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
+

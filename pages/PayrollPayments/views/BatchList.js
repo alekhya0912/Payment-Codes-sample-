@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Package, Trash2, Clock, Send, Pencil, X, Landmark, CircleDollarSign } from 'lucide-react';
+import { Package, Trash2, Clock, Send, Pencil, X, Landmark, CircleDollarSign, User } from 'lucide-react';
 import { formatDate } from '../../../assets/utils/formatDate';
 import './BatchList.css';
 import '../../../assets/styles/PayrollPayment.css';
@@ -25,6 +25,7 @@ const BatchList = ({ batches, employees, deleteBatch, assignEmployeeToBatch, ini
                         const batchEmployees = employees.filter(emp => emp.batchId === batch.id);
                         const isPayDisabled = batchEmployees.length === 0;
                         const totalSalary = batchEmployees.reduce((sum, emp) => sum + (typeof emp.salaryAmount === 'number' ? emp.salaryAmount : 0), 0);
+
                         return (
                             <div key={batch.id} className="batchCard">
                                 <div className="cardHeader">
@@ -70,6 +71,12 @@ const BatchList = ({ batches, employees, deleteBatch, assignEmployeeToBatch, ini
                                             Currency: <span>{batch.currency}</span>
                                         </div>
                                     )}
+                                    {batch.userId && (
+                                        <div className="statusRow">
+                                            <User />
+                                            Initiated By: <span>{batch.userId}</span>
+                                        </div>
+                                    )}
                                 </div>
 
                                 <div className="employeeList">
@@ -93,7 +100,6 @@ const BatchList = ({ batches, employees, deleteBatch, assignEmployeeToBatch, ini
                                                 </div>
                                                 <div className="employeeDetails">
                                                     <p><b>Bank:</b> {emp.bankDetails || 'N/A'}</p>
-                                                    {/* This line includes your "Department" change */}
                                                     <p><b>Dept:</b> {emp.department || 'N/A'} | <b>Ref:</b> {emp.paymentRef || 'N/A'}</p>
                                                     {emp.notes && <p><b>Notes:</b> {emp.notes}</p>}
                                                 </div>
@@ -128,7 +134,7 @@ const BatchList = ({ batches, employees, deleteBatch, assignEmployeeToBatch, ini
                                     )}
                                 </div>
                             </div>
-                        ); 
+                        );
                     })
                 )}
             </div>

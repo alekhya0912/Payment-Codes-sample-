@@ -1,11 +1,19 @@
 import React from "react";
-import { Link } from 'react-router-dom'; 
+import { Link, useNavigate } from 'react-router-dom'; 
 import "./Navbar.css";
 import logo from "../assets/images/logo.png";
 
 
 
 const Navbar = () => {
+
+  const navigate = useNavigate();
+
+  const handleSignOut = () => {
+    localStorage.removeItem("token");
+    sessionStorage.clear();
+    navigate("/login")
+  }
   return (
     <nav className="main-navbar">
       <div className="navbar-left">
@@ -64,7 +72,7 @@ const Navbar = () => {
       </div>
 
       <div className="navbar-right">
-        <Link to="/login"><button className="signout-btn">Sign Out</button></Link>
+        <button className="signout-btn" onClick={handleSignOut} >Sign Out</button>
       </div>
     </nav>
   );

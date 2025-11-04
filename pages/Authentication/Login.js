@@ -1,18 +1,59 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import bg from "../../assets/images/bg.avif";
 import Header from "../../common/Header";
+import { apiFetch } from "../../services/api";
 import "./Login.css";
 
 function Login() {
     const navigate = useNavigate();
-    const [user, setUser] = useState("");
-    const [password, setPassword] = useState("");
+  const [form, setForm] = useState({ userId: "", password: "" });
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-    const handleLogin = (e) => {
-        e.preventDefault();
-        console.log("Login Successful (Demo)");
-    };
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) navigate("/home");
+  }, [navigate]);
+
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    if (loading) return;
+    setLoading(true);
+    setError("");
+
+    try {
+      const response = await apiFetch("/api/auth/login", {
+        method: "POST",
+        body: JSON.stringify(form),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem("token", data.token);
+        setTimeout(() => {
+          setLoading(false);
+          navigate("/home")
+        }, 700);
+      } else {
+        setError("Invalid credentials. Please check your User ID or Password.");
+        setLoading(false)
+        setTimeout(() => setError(""), 10000);
+      }
+    } catch (err) {
+      console.error("Login error:", err);
+      if (err.response && err.response.status === 401) {
+        setError("Invalid credentials. Please check your ID or Password.");
+      } else {
+        setError("Server error. Please try again later.");
+      }
+      setLoading(false);
+      setTimeout(() => setError(""), 3000);
+    }
+  };
 
     return (
         <div className="login-container" style={{ backgroundImage: `url(${bg})` }}>
@@ -24,9 +65,9 @@ function Login() {
 
                     <form onSubmit={handleLogin}>
                         <label className="login-label">User ID or Email</label>
-                        <input className="login-input" type="text" placeholder="UserID or Email" value={user} onChange={(e) => setUser(e.target.value)} required/>
+                        <input className="login-input" type="text" name="userId" placeholder="UserID or Email" value={form.userId} onChange={handleChange} required/>
                         <label className="login-label">Password</label>
-                        <input className="login-input" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
+                        <input className="login-input" name="password" type="password" placeholder="Password" value={form.password} onChange={handleChange} required/>
                     </form>
                     <div className="remeber-section">
                         <div className="remember-left">
@@ -34,14 +75,16 @@ function Login() {
                             <label htmlFor="remember">Remeber me </label>
                         </div>
                     </div>
-                    <button className="Login-btn" onClick={(e) => {handleLogin(e); navigate("/home")}} type="submit">Log In</button>
-                    <span className="Need-help" onClick={() => navigate("/forget-password")}>Need help logging in</span>
-                    <div className="bottom-text">
+                    <button className="Login-btn" type="submit" onClick={handleLogin} disabled={loading}>Log In{loading ? " - Checking..." : ""}
+                    </button>
+                    {error && <div className="error-text">{error}</div>}
+                    <span className="Need-help" onClick={() => navigate("/forget-password")}>Forgot Password ?</span>
+                    {/* <div className="bottom-text">
                         <p>New here?{" "}
                             <span onClick={() => navigate("/signup")}>Create an account</span>
                             
                         </p>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

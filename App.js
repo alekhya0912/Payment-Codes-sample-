@@ -9,6 +9,7 @@ import AccountBalanceRoutes from './routes/AccountBalanceRoutes';
 import TransactionRoutes from './routes/TransactionRoutes';
 import ApprovalsPage from "./pages/PaymentApprovals/ApprovalsPage";
 import PayrollPaymentRoutes from "./routes/PayrollPaymentRoutes";
+import ProtectedLayout from "./common/ProtectedLayout";
 
 function App() {
   return (
@@ -18,12 +19,17 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/forget-password" element={<ForgetPassword />} />
-        <Route path="/home" element={<WelcomePage />} />
-        <Route path="/Payroll-payments" element={<PayrollPaymentRoutes />} />
-        <Route path="/Approval-page" element={<ApprovalRoutes />} />
-        <Route path="/reviewed-batches" element={<ApprovalsPage />} />
-        <Route path="/Account-balance-and-history" element={<AccountBalanceRoutes />} />
-        <Route path="/Transaction-history" element={<TransactionRoutes />} />
+
+        <Route element={<ProtectedLayout />}>
+          <Route path="/home" element={<WelcomePage />} />
+          <Route path="/Payroll-payments" element={<PayrollPaymentRoutes />} />
+          <Route path="/Approval-page" element={<ApprovalRoutes />} />
+          <Route path="/reviewed-batches" element={<ApprovalsPage />} />
+          <Route path="/Account-balance-and-history" element={<AccountBalanceRoutes />} />
+          <Route path="/Transaction-history" element={<TransactionRoutes />} />
+        </Route>
+
+        <Route path="*" element={<Navigate to="/login" replace />}/>
         
       </Routes>
     </div>

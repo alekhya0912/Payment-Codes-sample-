@@ -24,13 +24,16 @@ public class Batch {
     @Column(name = "payment_status", length = 20)
     private String paymentStatus = "Pending";
 
-    // --- NEW FIELDS ---
     @Column(name = "debit_account", length = 100)
     private String debitAccount;
 
     @Column(name = "currency", length = 10)
     private String currency;
-    // --- END NEW FIELDS ---
+
+    // --- NEW FIELD ---
+    @Column(name = "user_id", length = 50)
+    private String userId;
+    // --- END NEW FIELD ---
 
     @OneToMany(mappedBy = "batch", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     private List<Employee> employees = new ArrayList<>();
@@ -54,15 +57,18 @@ public class Batch {
     public void setLastPaymentDate(LocalDateTime lastPaymentDate) { this.lastPaymentDate = lastPaymentDate; }
     public String getPaymentStatus() { return paymentStatus; }
     public void setPaymentStatus(String paymentStatus) { this.paymentStatus = paymentStatus; }
-    public List<Employee> getEmployees() { return employees; }
-    public void setEmployees(List<Employee> employees) { this.employees = employees; }
-
-    // --- NEW GETTERS AND SETTERS ---
     public String getDebitAccount() { return debitAccount; }
     public void setDebitAccount(String debitAccount) { this.debitAccount = debitAccount; }
     public String getCurrency() { return currency; }
     public void setCurrency(String currency) { this.currency = currency; }
-    // --- END NEW GETTERS AND SETTERS ---
+    public List<Employee> getEmployees() { return employees; }
+    public void setEmployees(List<Employee> employees) { this.employees = employees; }
+
+    // --- NEW GETTER AND SETTER ---
+    public String getUserId() { return userId; }
+    public void setUserId(String userId) { this.userId = userId; }
+    // --- END NEW GETTER AND SETTER ---
+
 
     // --- Convenience Methods ---
     public void addEmployee(Employee employee) {
@@ -77,7 +83,7 @@ public class Batch {
     // --- toString, equals, hashCode ---
     @Override
     public String toString() {
-        return "Batch{" + "id=" + id + ", name='" + name + '\'' + ", paymentCount=" + paymentCount + ", lastPaymentDate=" + lastPaymentDate + ", paymentStatus='" + paymentStatus + '\'' + ", debitAccount='" + debitAccount + '\'' + ", currency='" + currency + '\'' + '}';
+        return "Batch{" + "id=" + id + ", name='" + name + '\'' + ", paymentCount=" + paymentCount + ", lastPaymentDate=" + lastPaymentDate + ", paymentStatus='" + paymentStatus + '\'' + ", debitAccount='" + debitAccount + '\'' + ", currency='" + currency + '\'' + ", userId='" + userId + '\'' + '}';
     }
     @Override
     public boolean equals(Object o) {

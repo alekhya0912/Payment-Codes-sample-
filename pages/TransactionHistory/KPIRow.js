@@ -7,9 +7,14 @@ function KPIRow({stats}){
 
     return(
         <div className="kpi-row">
-            <div className="kpi-card">
+            {/* <div className="kpi-card">
                 <div className="kpi-value">{stats.total}</div>
                 <div className="kpi-label">Total Batches</div>
+            </div> */}
+
+            <div className="kpi-card">
+                <div className="kpi-value">{stats.approved}</div>
+                <div className="kpi-label">Approved</div>
             </div>
 
             <div className="kpi-card">
@@ -18,9 +23,13 @@ function KPIRow({stats}){
             </div>
 
             <div className="kpi-card">
-                <div className="kpi-value">{stats.approved}</div>
-                <div className="kpi-label">Approved</div>
+                <div className="kpi-value">{stats.rejected}</div>
+                <div className="kpi-label">Rejected</div>
             </div>
+
+            
+
+            
 
             <div className="kpi-card">
                 <div className="kpi-value">{nfUSD.format(stats.usdAmount)}</div>

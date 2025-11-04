@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import PayrollDetailsModal from './PayrollDetailsModal';
 import Navbar from '../../common/Navbar';
 import ApprovalService from '../../services/ApprovalService';
+import { getEmployees } from '../../services/payrollapi';
 
 const ApprovalsPage = () => {
   const [allApprovals, setAllApprovals] = useState([]);
   const [filterStatus, setFilterStatus] = useState('all');
   const [selectedPayroll, setSelectedPayroll] = useState(null);
   const [showDetailsModal, setShowDetailsModal] = useState(false);
+  const [allEmployees, setAllEmployees] = useState([]);
 
   // Load reviewed batches from API
   useEffect(() => {
@@ -24,13 +26,23 @@ const ApprovalsPage = () => {
     };
 
     loadReviewedBatches();
+    (async ()=>{
+      try{
+        const employees=await getEmployees();
+        setAllEmployees(Array.isArray(employees) ? employees : []);
+      }
+      catch(empErr){
+        console.error('Error loading employees: ',empErr);
+        setAllEmployees([]);
+      }
+    })();
 
-    const onUpdated = () => {
+    const onUpdated =() => {
       loadReviewedBatches();
     };
-    window.addEventListener('approvals:updated', onUpdated);
+    window.addEventListener('approvals:updated',onUpdated);
     return () => {
-      window.removeEventListener('approvals:updated', onUpdated);
+      window.removeEventListener('approvals.updated',onUpdated);
     };
   }, []);
 
@@ -238,6 +250,9 @@ const ApprovalsPage = () => {
         {showDetailsModal && (
           <PayrollDetailsModal
             payroll={selectedPayroll}
+            employees={allEmployees.filter(
+              (e)=>String(e.batchId || ' ') === String(selectedPayroll.id || '')
+            )}
             onClose={handleCloseModal}
             onApprove={() => {}} // No approve action for completed approvals
             onReject={() => {}} // No reject action for completed approvals

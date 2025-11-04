@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PayrollCard from './PayrollCard';
 import PayrollDetailsModal from './PayrollDetailsModal';
 import ApprovalService from '../../services/ApprovalService';
-import { getEmployees } from '../../services/api';
+import { getEmployees } from '../../services/payrollapi';
 
 const ApproverPage = () => {
   const [payrolls, setPayrolls] = useState([]);

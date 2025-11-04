@@ -22,7 +22,7 @@
     color: #333;
     width: 440px;
     max-width: 95%;
-    height: 75vh;
+    height: 72vh;
     padding: 20px 5px 20px 20px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
@@ -136,3 +136,11 @@
     color: #007bff;
     cursor: pointer;
 }
+
+.error-text {
+    color: #d9534f;
+    font-size: 13px;
+    margin-top: -8px;
+    margin-bottom: 5px;
+    text-align: left;
+  }

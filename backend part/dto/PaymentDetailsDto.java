@@ -3,23 +3,20 @@ public class PaymentDetailsDto {
     private String debitAccount;
     private String payrollType;
     private String currency;
-    // batchId will come from the path parameter
-
-    // Default Constructor
+    private String userId;
     public PaymentDetailsDto() {}
-
-    // Constructor
-    public PaymentDetailsDto(String debitAccount, String payrollType, String currency) {
+    public PaymentDetailsDto(String debitAccount, String payrollType, String currency, String userId) {
         this.debitAccount = debitAccount;
         this.payrollType = payrollType;
         this.currency = currency;
+        this.userId = userId;
     }
-
-    // Getters and Setters
     public String getDebitAccount() { return debitAccount; }
     public void setDebitAccount(String debitAccount) { this.debitAccount = debitAccount; }
     public String getPayrollType() { return payrollType; }
     public void setPayrollType(String payrollType) { this.payrollType = payrollType; }
     public String getCurrency() { return currency; }
     public void setCurrency(String currency) { this.currency = currency; }
+    public String getUserId() { return userId; }
+    public void setUserId(String userId) { this.userId = userId; }
 }

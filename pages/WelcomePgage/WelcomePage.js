@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../../common/Navbar";
 import "./WelcomePage.css"; 
 import { Link } from "react-router-dom";
@@ -6,15 +6,31 @@ import Payroll from "../../assets/images/Payroll.jpg";
 import Transaction from "../../assets/images/Transaction.jpg";
 import Approvals from "../../assets/images/Approvals.jpg";
 import Accounts from "../../assets/images/Accounts.jpg";
+import { getCurrentUser } from "../../services/api";
 
 const WelcomePage = () => {
+  const [userId, setUserId] = useState("");
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    async function fetchUser() {
+      try {
+        const data = await getCurrentUser();
+        setUserId(data.userId);
+      } catch (err) {
+        setError("Could not load user");
+        console.error(err);
+      }
+    }
+    fetchUser();
+  }, [])
   return (
     <div className="welcome-container">
       
       <Navbar /> 
       
       <div className="welcome-message">
-        <h1>Welcome to Payment Initiation Portal</h1>
+        <h1>Welcome {userId}</h1>
         <p>Manage Payroll, Transactions, Approvals, and Account Details with ease.</p>
       </div>
 

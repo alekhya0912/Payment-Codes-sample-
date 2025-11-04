@@ -8,15 +8,16 @@ public class BatchDto {
     private LocalDateTime lastPaymentDate;
     private String paymentStatus;
     private long employeeCount;
-    // --- NEW FIELDS ---
     private String debitAccount;
     private String currency;
-    // --- END NEW FIELDS ---
+    // --- NEW FIELD ---
+    private String userId;
+    // --- END NEW FIELD ---
 
     public BatchDto() {}
 
     // --- MODIFIED CONSTRUCTOR ---
-    public BatchDto(Long id, String name, int paymentCount, LocalDateTime lastPaymentDate, String paymentStatus, long employeeCount, String debitAccount, String currency) {
+    public BatchDto(Long id, String name, int paymentCount, LocalDateTime lastPaymentDate, String paymentStatus, long employeeCount, String debitAccount, String currency, String userId) {
         this.id = id;
         this.name = name;
         this.paymentCount = paymentCount;
@@ -25,6 +26,7 @@ public class BatchDto {
         this.employeeCount = employeeCount;
         this.debitAccount = debitAccount;
         this.currency = currency;
+        this.userId = userId; // Set new field
     }
 
     // --- Getters and Setters ---
@@ -40,11 +42,13 @@ public class BatchDto {
     public void setPaymentStatus(String paymentStatus) { this.paymentStatus = paymentStatus; }
     public long getEmployeeCount() { return employeeCount; }
     public void setEmployeeCount(long employeeCount) { this.employeeCount = employeeCount; }
-
-    // --- NEW GETTERS AND SETTERS ---
     public String getDebitAccount() { return debitAccount; }
     public void setDebitAccount(String debitAccount) { this.debitAccount = debitAccount; }
     public String getCurrency() { return currency; }
     public void setCurrency(String currency) { this.currency = currency; }
-    // --- END NEW GETTERS AND SETTERS ---
+
+    // --- NEW GETTER AND SETTER ---
+    public String getUserId() { return userId; }
+    public void setUserId(String userId) { this.userId = userId; }
+    // --- END NEW GETTER AND SETTER ---
 }

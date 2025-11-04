@@ -1,5 +1,28 @@
+
+
+
 function printStatement(batch) {
+    const tx0 = (batch?.transactions && batch.transactions[0]) || {};
     const now = new Date();
+    const formatMoney=(val,ccy)=>{
+        if(typeof val!="number") return val ?? "";
+        if(ccy === "INR"){
+            return new Intl.NumberFormat("en-IN",{style:"currency",currency:"INR",maximumFractionDigits:0}).format(val);
+        }
+        if(ccy === "USD"){
+            return new Intl.NumberFormat("en-US",{style:"currency",currency:"USD",maximumFractionDigits:0}).format(val);
+        }
+        return val.toLocaleString();
+    };
+
+    const formattedAmount=typeof batch.totalAmountNum==="number"
+    ? formatMoney(batch.totalAmountNum,batch.currency)
+    :(batch.amount || "");
+    const formattedDate=batch.date ? new Date(batch?.date).toLocaleDateString("en-US",{
+        day: "2-digit",
+        month:"short",
+        year:"numeric",
+    }) : "";
 
     const html = `<!doctype html>
     <html>
@@ -40,7 +63,7 @@ function printStatement(batch) {
     <div class="hdr">
     <div class="title">PAYMENT BATCH SUMMARY</div>
     <div class="meta">
-    <div><b>Gnerated by:</b>USER</div>
+    <div><b>Gnerated by:</b>${batch.createdBy}</div>
     <div><b>Gnerated on : </b>${now.toLocaleString()}</div>
     </div>
     </div>
@@ -69,18 +92,16 @@ function printStatement(batch) {
     <div class="row">
     <div class="cell">
     <div class="lbl">Payment Amount</div>
-    <div class="val">${batch?.totalAmount || batch?.amount || "-"}</div>
+    <div class="val">${formattedAmount} </div>
     </div>
-    <div class="cell">
-    <div class="lbl">Payment Type</div>
-    <div class="val">Automated</div>
-    </div>
+   
     <div class="cell">
     <div class="lbl">Payment Date</div>
-    <div class="val">${batch?.date??"-"}</div>
+    <div class="val">${formattedDate}</div>
     <div class="lbl">Debit Date</div>
     <div class="val">${batch?.date??"-"}</div>
     </div>
+    
     </div>
 
 
@@ -90,13 +111,10 @@ function printStatement(batch) {
     <div class="val mono">${batch?.debitAccount ?? "-"} ${batch?.currency??""}</div>
     </div>
     <div class="cell">
-    <div class="lbl">Company Name</div>
+    <div class="lbl">User Name</div>
     <div class="val">${batch?.name ?? "-"}</div>
     </div>
-    <div class="cell">
-    <div class="lbl">Account Held In</div>
-    <div class="val">${batch?.currency === "INR"?"IN" : (batch?.currency === "USD" ? "US":"-")}</div>
-    </div>
+    
     </div>
 
 

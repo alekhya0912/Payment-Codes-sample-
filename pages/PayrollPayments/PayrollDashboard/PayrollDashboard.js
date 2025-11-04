@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import './PayrollDashboard.css';
 import '../../../assets/styles/PayrollPayment.css';
-import * as api from '../../../services/api';
+import * as api from '../../../services/payrollapi';
 import LoadingState from '../ui/LoadingState';
 import ErrorState from '../ui/ErrorState';
 import PayrollHeader from '../ui/PayrollHeader';

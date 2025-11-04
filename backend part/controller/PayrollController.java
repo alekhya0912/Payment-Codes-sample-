@@ -208,6 +208,11 @@ public class PayrollController {
         if (paymentDetails.getDebitAccount() == null || paymentDetails.getDebitAccount().trim().isEmpty()) {
             return ResponseEntity.badRequest().body("Debit account is required.");
         }
+        // --- NEW VALIDATION ---
+        if (paymentDetails.getUserId() == null || paymentDetails.getUserId().trim().isEmpty()) {
+            return ResponseEntity.badRequest().body("User ID is required.");
+        }
+        // --- END NEW VALIDATION ---
 
         BankAccount debitAccount = bankAccountRepository.findByAccountNumber(paymentDetails.getDebitAccount())
                 .orElseThrow(() -> new EntityNotFoundException("Selected Debit Account not found: " + paymentDetails.getDebitAccount()));
@@ -237,19 +242,18 @@ public class PayrollController {
         batch.setPaymentCount(batch.getPaymentCount() + 1);
         batch.setLastPaymentDate(LocalDateTime.now());
         batch.setPaymentStatus("Pending");
-        batch.setDebitAccount(paymentDetails.getDebitAccount()); // Set debit account
-        batch.setCurrency(paymentDetails.getCurrency());     // Set currency
+        batch.setDebitAccount(paymentDetails.getDebitAccount());
+        batch.setCurrency(paymentDetails.getCurrency());
+        batch.setUserId(paymentDetails.getUserId().trim()); // Set User ID
 
-        System.out.println("Payment initiated (Status: Pending) for batch " + id + " from account " + paymentDetails.getDebitAccount() +
+        System.out.println("Payment initiated (Status: Pending) by User: " + paymentDetails.getUserId() + // Log User ID
+                " for batch " + id + " from account " + paymentDetails.getDebitAccount() +
                 " type: " + paymentDetails.getPayrollType() + " currency: " + paymentDetails.getCurrency() +
                 " Amount: " + totalPaymentAmount);
 
         Batch updatedBatch = batchRepository.save(batch);
         return ResponseEntity.ok(convertToBatchDto(updatedBatch));
     }
-
-    // --- Simple Approval/Reject on Batch (no separate approval entries) ---
-    
 
     // --- Bank Accounts Endpoint ---
 
@@ -274,8 +278,9 @@ public class PayrollController {
                 batch.getLastPaymentDate(),
                 batch.getPaymentStatus(),
                 employeeCount,
-                batch.getDebitAccount(), // Pass new field
-                batch.getCurrency()      // Pass new field
+                batch.getDebitAccount(),
+                batch.getCurrency(),
+                batch.getUserId() // Pass new field
         );
     }
 
